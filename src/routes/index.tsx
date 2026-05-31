@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import portrait from "@/assets/yahiya-portrait.jpg";
-import { ArrowUpRight, Mail, Phone, MapPin, Github, Send, Sparkles, Code2, Database, Cloud, Bot, GraduationCap } from "lucide-react";
+import { ArrowUpRight, Mail, Phone, MapPin, Github, Send, Sparkles, Code2, Database, Cloud, Bot, GraduationCap, Menu, X, Atom, Boxes, Cpu, Server, Cog, Layers, Braces, Terminal, Globe, Zap, Brain, Container } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,20 +24,27 @@ const services = [
   { icon: GraduationCap, title: "Technical Training", desc: "Hands-on training in modern web development and AI tools, online and offline." },
 ];
 
-const skills = {
-  Frontend: ["React.js", "Next.js", "Angular", "TypeScript", "Tailwind CSS", "JavaScript", "HTML5", "CSS3"],
-  Backend: ["Node.js", "Express", "NestJS", "Python", "Django", "FastAPI"],
-  Database: ["PostgreSQL", "MySQL", "MongoDB", "Firebase", "Supabase"],
-  "DevOps & Cloud": ["Docker", "AWS", "Azure", "GCP", "Nginx", "Linux", "CI/CD"],
-  "AI & Automation": ["OpenAI", "Gemini", "Claude", "RAG", "AI Agents", "OCR", "Computer Vision", "Voice Assistants"],
+type SkillGroup = {
+  cat: string;
+  icon: typeof Code2;
+  tagline: string;
+  items: string[];
 };
+
+const skillGroups: SkillGroup[] = [
+  { cat: "Frontend", icon: Atom, tagline: "Interfaces that feel inevitable.", items: ["React.js", "Next.js", "Angular", "TypeScript", "Tailwind CSS", "JavaScript", "HTML5", "CSS3"] },
+  { cat: "Backend", icon: Server, tagline: "APIs that don't break under load.", items: ["Node.js", "Express", "NestJS", "Python", "Django", "FastAPI"] },
+  { cat: "Database", icon: Database, tagline: "Data modeled to outlast the app.", items: ["PostgreSQL", "MySQL", "MongoDB", "Firebase", "Supabase"] },
+  { cat: "DevOps & Cloud", icon: Container, tagline: "Ship Friday. Sleep Friday.", items: ["Docker", "AWS", "Azure", "GCP", "Nginx", "Linux", "CI/CD"] },
+  { cat: "AI & Automation", icon: Brain, tagline: "Models with a job to do.", items: ["OpenAI", "Gemini", "Claude", "RAG", "AI Agents", "OCR", "Computer Vision", "Voice Assistants"] },
+];
 
 function Portfolio() {
   return (
     <main className="min-h-screen text-foreground overflow-x-hidden">
       <Nav />
       <Hero />
-      <Marquee />
+      <TechCloud />
       <About />
       <Services />
       <Skills />
@@ -49,21 +56,75 @@ function Portfolio() {
 }
 
 function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      const h = document.documentElement;
+      const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+      setProgress(Math.min(1, Math.max(0, p)));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const links = [
+    { href: "#about", label: "About" },
+    { href: "#work", label: "Services" },
+    { href: "#skills", label: "Stack" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/60 border-b border-border/40">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-        <a href="#top" className="text-mono text-sm tracking-tight">
-          <span className="text-primary">/</span> yahiya.ds
-        </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <a href="#work" className="hover:text-foreground transition">Services</a>
-          <a href="#skills" className="hover:text-foreground transition">Skills</a>
-          <a href="#about" className="hover:text-foreground transition">About</a>
-          <a href="#contact" className="hover:text-foreground transition">Contact</a>
-        </nav>
-        <a href="#contact" className="group inline-flex items-center gap-1.5 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium hover:opacity-90 transition">
-          Hire me <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-        </a>
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-2" : "py-4"}`}>
+      <div className={`max-w-6xl mx-auto px-4 lg:px-6 transition-all duration-500`}>
+        <div className={`flex items-center justify-between gap-3 rounded-full border border-border/60 bg-background/70 backdrop-blur-xl pl-5 pr-2 py-2 ${scrolled ? "shadow-2xl shadow-primary/10" : ""}`}>
+          <a href="#top" className="flex items-center gap-2 text-mono text-sm tracking-tight shrink-0">
+            <span className="relative inline-flex size-2.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 animate-ping" />
+              <span className="relative inline-flex size-2.5 rounded-full bg-primary" />
+            </span>
+            <span className="font-semibold">yahiya<span className="text-primary">.ds</span></span>
+          </a>
+
+          <nav className="hidden md:flex items-center gap-1 text-sm">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className="relative px-3 py-1.5 text-muted-foreground hover:text-foreground transition group">
+                {l.label}
+                <span className="absolute left-3 right-3 -bottom-0.5 h-px bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <a href="#contact" className="hidden sm:inline-flex items-center gap-1.5 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium hover:opacity-90 transition group">
+              Hire me <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+            <button onClick={() => setOpen((v) => !v)} className="md:hidden size-9 inline-flex items-center justify-center rounded-full border border-border bg-surface/60" aria-label="menu">
+              {open ? <X className="size-4" /> : <Menu className="size-4" />}
+            </button>
+          </div>
+        </div>
+
+        {/* scroll progress */}
+        <div className="mx-6 mt-1 h-px bg-border/40 overflow-hidden rounded-full">
+          <div className="h-full bg-primary transition-[width] duration-150" style={{ width: `${progress * 100}%` }} />
+        </div>
+
+        {open && (
+          <div className="md:hidden mt-2 rounded-2xl border border-border/60 bg-background/90 backdrop-blur-xl p-2">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block px-4 py-3 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-surface/60 transition">
+                {l.label}
+              </a>
+            ))}
+            <a href="#contact" onClick={() => setOpen(false)} className="mt-1 block px-4 py-3 rounded-xl text-sm bg-primary text-primary-foreground font-medium text-center">Hire me</a>
+          </div>
+        )}
       </div>
     </header>
   );
@@ -74,7 +135,28 @@ function Hero() {
     <section id="top" className="relative pt-32 pb-20 lg:pt-44 lg:pb-32">
       <div className="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.18), transparent 60%)", filter: "blur(60px)" }} />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center relative">
-        <div className="lg:col-span-7 space-y-8">
+        {/* Portrait first */}
+        <div className="lg:col-span-5 order-1 relative flex justify-start">
+          <div className="relative group">
+            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
+            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
+              <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+                <div>
+                  <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
+                  <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
+                </div>
+                <div className="text-mono text-[10px] text-muted-foreground text-right uppercase tracking-widest">
+                  Est.<br />2022
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Text right */}
+        <div className="lg:col-span-7 order-2 space-y-8">
           <div className="inline-flex items-center gap-3 text-xs text-mono uppercase tracking-[0.2em] text-primary font-semibold">
             <span className="h-px w-8 bg-primary" />
             Available for projects · 2026
@@ -103,28 +185,6 @@ function Hero() {
             <Stat n="4" l="Languages spoken" />
           </div>
         </div>
-
-        <div className="lg:col-span-5 relative flex justify-end">
-          <div className="relative group">
-            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
-            <div className="relative w-full max-w-[400px] aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
-              <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
-                <div>
-                  <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
-                  <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
-                </div>
-                <div className="text-mono text-[10px] text-muted-foreground text-right uppercase tracking-widest">
-                  Est.<br />2022
-                </div>
-              </div>
-            </div>
-            <div className="absolute -bottom-4 -left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-mono text-[10px] uppercase tracking-widest font-bold -rotate-3 shadow-xl z-10">
-              Kerala — India
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -139,16 +199,57 @@ function Stat({ n, l }: { n: string; l: string }) {
   );
 }
 
-function Marquee() {
-  const items = ["React", "Next.js", "TypeScript", "Node.js", "NestJS", "Python", "FastAPI", "PostgreSQL", "OpenAI", "Gemini", "Claude", "RAG", "Docker", "AWS", "Supabase"];
+// Variety tech cloud — replaces the single-line marquee with a richer mixed-size badge field
+function TechCloud() {
+  type Chip = { label: string; icon?: typeof Atom; size?: "sm" | "md" | "lg"; accent?: boolean };
+  const chips: Chip[] = [
+    { label: "React", icon: Atom, size: "lg", accent: true },
+    { label: "TypeScript", icon: Braces, size: "md" },
+    { label: "Next.js", icon: Layers, size: "md", accent: true },
+    { label: "Node.js", icon: Server, size: "sm" },
+    { label: "Python", icon: Terminal, size: "md" },
+    { label: "FastAPI", icon: Zap, size: "sm", accent: true },
+    { label: "PostgreSQL", icon: Database, size: "md" },
+    { label: "OpenAI", icon: Brain, size: "lg", accent: true },
+    { label: "Gemini", icon: Sparkles, size: "sm" },
+    { label: "Claude", icon: Bot, size: "sm" },
+    { label: "RAG", icon: Cpu, size: "sm", accent: true },
+    { label: "Docker", icon: Container, size: "md" },
+    { label: "AWS", icon: Cloud, size: "sm" },
+    { label: "Supabase", icon: Boxes, size: "md" },
+    { label: "NestJS", icon: Cog, size: "sm" },
+    { label: "Tailwind", icon: Globe, size: "sm", accent: true },
+  ];
+
+  const sizeCls = {
+    sm: "text-xs px-3 py-1.5",
+    md: "text-sm px-4 py-2",
+    lg: "text-base px-5 py-2.5",
+  } as const;
+
   return (
-    <section aria-hidden className="border-y border-border/50 py-6 overflow-hidden bg-surface/30">
-      <div className="marquee flex gap-12 whitespace-nowrap text-display text-2xl text-muted-foreground">
-        {[...items, ...items].map((s, i) => (
-          <span key={i} className="flex items-center gap-12">
-            {s} <span className="text-primary">✦</span>
-          </span>
-        ))}
+    <section aria-label="technologies" className="relative border-y border-border/50 bg-surface/30 py-10 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, oklch(0.58 0.22 275 / 0.1), transparent 70%)" }} />
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
+        <div className="flex items-center gap-3 text-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-6">
+          <span className="h-px w-6 bg-primary" />
+          A taste of the toolbox
+        </div>
+        <div className="flex flex-wrap gap-2.5 items-center">
+          {chips.map((c, i) => {
+            const Icon = c.icon;
+            return (
+              <span
+                key={i}
+                className={`group inline-flex items-center gap-2 rounded-full border ${c.accent ? "border-primary/50 bg-primary/10 text-foreground" : "border-border bg-background/60 text-muted-foreground"} ${sizeCls[c.size ?? "sm"]} hover:border-primary hover:text-primary hover:-translate-y-0.5 transition-all duration-300`}
+                style={{ animationDelay: `${i * 40}ms` }}
+              >
+                {Icon && <Icon className="size-3.5" />}
+                <span className="text-mono tracking-tight">{c.label}</span>
+              </span>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -226,29 +327,95 @@ function ServiceCard({ icon: Icon, title, desc, idx }: { icon: typeof Code2; tit
   );
 }
 
+// Redesigned Skills — interactive vertical category index with detail panel
 function Skills() {
+  const [active, setActive] = useState(0);
+  const current = skillGroups[active];
+  const Icon = current.icon;
+
   return (
     <section id="skills" className="py-24 lg:py-32 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="mb-16">
-          <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 03 — Stack</div>
-          <h2 className="text-display text-4xl md:text-5xl mt-4 max-w-2xl">Tools I reach for, daily.</h2>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+          <div>
+            <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 03 — Stack</div>
+            <h2 className="text-display text-4xl md:text-5xl mt-4 max-w-2xl">Tools I reach for, daily.</h2>
+          </div>
+          <p className="text-muted-foreground max-w-md text-sm">
+            Five disciplines, one stack. Pick a layer to see what's in the toolbox.
+          </p>
         </div>
-        <div className="space-y-px bg-border rounded-2xl overflow-hidden border border-border">
-          {Object.entries(skills).map(([cat, items]) => (
-            <div key={cat} className="bg-background p-6 lg:p-8 grid md:grid-cols-12 gap-6 items-center hover:bg-surface transition">
-              <div className="md:col-span-3">
-                <div className="text-display text-xl">{cat}</div>
-              </div>
-              <div className="md:col-span-9 flex flex-wrap gap-2">
-                {items.map((s) => (
-                  <span key={s} className="text-mono text-xs px-3 py-1.5 rounded-full border border-border bg-surface/50 text-muted-foreground hover:text-primary hover:border-primary transition">
-                    {s}
+
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
+          {/* Category index */}
+          <div className="lg:col-span-5 space-y-2">
+            {skillGroups.map((g, i) => {
+              const GIcon = g.icon;
+              const isActive = i === active;
+              return (
+                <button
+                  key={g.cat}
+                  onClick={() => setActive(i)}
+                  className={`group w-full text-left flex items-center gap-4 rounded-2xl border p-5 transition-all duration-300 ${
+                    isActive
+                      ? "border-primary bg-surface shadow-lg shadow-primary/10"
+                      : "border-border bg-background hover:border-primary/40 hover:bg-surface/40"
+                  }`}
+                >
+                  <span className={`text-mono text-xs w-6 ${isActive ? "text-primary" : "text-muted-foreground"}`}>
+                    0{i + 1}
                   </span>
-                ))}
+                  <span className={`size-10 rounded-xl flex items-center justify-center border transition ${isActive ? "bg-primary text-primary-foreground border-primary" : "bg-surface border-border text-foreground"}`}>
+                    <GIcon className="size-5" />
+                  </span>
+                  <span className="flex-1">
+                    <span className="block text-display text-lg leading-tight">{g.cat}</span>
+                    <span className="block text-xs text-muted-foreground mt-0.5">{g.items.length} tools</span>
+                  </span>
+                  <ArrowUpRight className={`size-4 transition ${isActive ? "text-primary translate-x-0 translate-y-0" : "text-muted-foreground -translate-x-1 translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0"}`} />
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Detail panel */}
+          <div className="lg:col-span-7">
+            <div key={active} className="relative rounded-3xl border border-primary/30 bg-surface/60 p-8 lg:p-10 overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.35), transparent 60%)", filter: "blur(70px)" }} />
+              <div className="relative">
+                <div className="flex items-start justify-between gap-4 mb-8">
+                  <div className="flex items-center gap-4">
+                    <span className="size-14 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center" style={{ boxShadow: "var(--shadow-glow)" }}>
+                      <Icon className="size-6" />
+                    </span>
+                    <div>
+                      <div className="text-mono text-[10px] uppercase tracking-[0.2em] text-primary">Layer 0{active + 1}</div>
+                      <h3 className="text-display text-3xl mt-1">{current.cat}</h3>
+                    </div>
+                  </div>
+                  <span className="text-mono text-[10px] uppercase tracking-widest text-muted-foreground hidden sm:block">
+                    {current.items.length} / tools
+                  </span>
+                </div>
+
+                <p className="text-foreground text-lg leading-snug mb-8 max-w-md text-balance">
+                  {current.tagline}
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {current.items.map((s) => (
+                    <div
+                      key={s}
+                      className="text-mono text-xs px-3 py-2.5 rounded-lg border border-border bg-background/60 text-foreground hover:border-primary hover:text-primary transition flex items-center justify-between"
+                    >
+                      <span className="truncate">{s}</span>
+                      <span className="text-primary opacity-60">✦</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
