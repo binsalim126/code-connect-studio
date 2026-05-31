@@ -71,26 +71,27 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="relative pt-32 pb-20 lg:pt-44 lg:pb-32 grain">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center">
+    <section id="top" className="relative pt-32 pb-20 lg:pt-44 lg:pb-32">
+      <div className="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.18), transparent 60%)", filter: "blur(60px)" }} />
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center relative">
         <div className="lg:col-span-7 space-y-8">
-          <div className="inline-flex items-center gap-2 text-xs text-mono uppercase tracking-widest text-muted-foreground">
-            <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+          <div className="inline-flex items-center gap-3 text-xs text-mono uppercase tracking-[0.2em] text-primary font-semibold">
+            <span className="h-px w-8 bg-primary" />
             Available for projects · 2026
           </div>
-          <h1 className="text-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] text-balance">
+          <h1 className="text-display text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.05] tracking-tight text-balance">
             Building the web,<br />
-            <span className="italic text-primary">teaching machines</span><br />
+            <span className="text-primary">teaching machines</span><br />
             to think.
           </h1>
           <p className="max-w-xl text-lg text-muted-foreground leading-relaxed">
             I'm <span className="text-foreground">Mohammed Yahiya DS</span> — a Full Stack Developer and AI Solutions Developer with 3+ years crafting modern web applications, intelligent chatbots, and business automation from Ernakulam, Kerala.
           </p>
           <div className="flex flex-wrap items-center gap-4 pt-2">
-            <a href="#contact" className="group inline-flex items-center gap-2 bg-foreground text-background px-6 py-3.5 rounded-full font-medium hover:bg-primary hover:text-primary-foreground transition">
+            <a href="#contact" className="group inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 rounded-full font-semibold hover:opacity-90 transition" style={{ boxShadow: "var(--shadow-glow)" }}>
               Start a project <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
-            <a href="#work" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-border hover:border-primary hover:text-primary transition">
+            <a href="#work" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-foreground hover:border-primary hover:text-primary transition font-medium">
               View services
             </a>
           </div>
@@ -103,23 +104,25 @@ function Hero() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 relative">
-          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-surface border border-border" style={{ boxShadow: "var(--shadow-elegant)" }}>
-            <div className="absolute inset-0" style={{ background: "var(--gradient-warm)" }} />
-            <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top mix-blend-luminosity opacity-95" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-              <div>
-                <div className="text-mono text-xs text-primary uppercase tracking-widest">/ portrait</div>
-                <div className="text-display text-xl mt-1">Mohammed Yahiya</div>
-              </div>
-              <div className="text-mono text-xs text-muted-foreground text-right">
-                EST.<br />2022
+        <div className="lg:col-span-5 relative flex justify-end">
+          <div className="relative group">
+            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
+            <div className="relative w-full max-w-[400px] aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
+              <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+                <div>
+                  <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
+                  <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
+                </div>
+                <div className="text-mono text-[10px] text-muted-foreground text-right uppercase tracking-widest">
+                  Est.<br />2022
+                </div>
               </div>
             </div>
-          </div>
-          <div className="absolute -bottom-4 -left-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-mono text-xs uppercase tracking-widest rotate-[-6deg] shadow-lg">
-            Kerala · India
+            <div className="absolute -bottom-4 -left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-mono text-[10px] uppercase tracking-widest font-bold -rotate-3 shadow-xl z-10">
+              Kerala — India
+            </div>
           </div>
         </div>
       </div>
@@ -256,12 +259,13 @@ function Training() {
   return (
     <section className="py-24 lg:py-32 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="rounded-3xl p-10 lg:p-16 relative overflow-hidden border border-border" style={{ background: "var(--gradient-warm)" }}>
+        <div className="rounded-3xl p-10 lg:p-16 relative overflow-hidden border border-primary/30 bg-surface/40">
+          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.35), transparent 60%)", filter: "blur(80px)" }} />
           <div className="grid lg:grid-cols-12 gap-10 items-center relative">
             <div className="lg:col-span-7">
               <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 04 — Training</div>
-              <h2 className="text-display text-4xl md:text-5xl mt-4 text-balance">
-                Teaching the craft to the <span className="italic text-primary">next generation</span>.
+              <h2 className="text-display text-4xl md:text-5xl font-bold mt-4 text-balance">
+                Teaching the craft to the <span className="text-primary">next generation</span>.
               </h2>
               <p className="mt-6 text-muted-foreground text-lg max-w-xl leading-relaxed">
                 As a technical trainer, I've delivered hands-on workshops in modern web development and AI tooling to 45+ students through both online and offline sessions.
@@ -305,8 +309,8 @@ function Contact() {
         <div className="lg:col-span-5 space-y-8">
           <div>
             <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 05 — Contact</div>
-            <h2 className="text-display text-5xl md:text-6xl mt-4 text-balance">
-              Let's build <span className="italic text-primary">something</span>.
+            <h2 className="text-display text-5xl md:text-6xl font-bold mt-4 text-balance">
+              Let's build <span className="text-primary">something</span>.
             </h2>
           </div>
           <p className="text-muted-foreground text-lg leading-relaxed">

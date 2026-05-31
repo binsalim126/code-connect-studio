@@ -31,42 +31,40 @@
   --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Sora", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
-  /* Editorial dark — warm ink + amber accent */
-  --background: oklch(0.16 0.012 70);
-  --foreground: oklch(0.96 0.012 80);
-  --surface: oklch(0.21 0.014 70);
-  --surface-foreground: oklch(0.96 0.012 80);
-  --card: oklch(0.21 0.014 70);
-  --card-foreground: oklch(0.96 0.012 80);
-  --popover: oklch(0.21 0.014 70);
-  --popover-foreground: oklch(0.96 0.012 80);
-  --primary: oklch(0.82 0.15 75);
-  --primary-foreground: oklch(0.16 0.012 70);
-  --secondary: oklch(0.26 0.014 70);
-  --secondary-foreground: oklch(0.96 0.012 80);
-  --muted: oklch(0.24 0.012 70);
-  --muted-foreground: oklch(0.7 0.018 75);
-  --accent: oklch(0.82 0.15 75);
-  --accent-foreground: oklch(0.16 0.012 70);
+  /* Midnight Indigo — deep navy + electric indigo */
+  --background: oklch(0.14 0.03 275);          /* #0a0a1a */
+  --foreground: oklch(0.97 0.005 270);
+  --surface: oklch(0.22 0.06 275);             /* #141432 */
+  --surface-foreground: oklch(0.97 0.005 270);
+  --card: oklch(0.22 0.06 275);
+  --card-foreground: oklch(0.97 0.005 270);
+  --popover: oklch(0.22 0.06 275);
+  --popover-foreground: oklch(0.97 0.005 270);
+  --primary: oklch(0.58 0.22 275);             /* #4f46e5 */
+  --primary-foreground: oklch(0.98 0.005 270);
+  --secondary: oklch(0.3 0.09 275);            /* #1e1e5a */
+  --secondary-foreground: oklch(0.97 0.005 270);
+  --muted: oklch(0.26 0.05 275);
+  --muted-foreground: oklch(0.72 0.04 275);
+  --accent: oklch(0.58 0.22 275);
+  --accent-foreground: oklch(0.98 0.005 270);
   --destructive: oklch(0.62 0.22 27);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.3 0.014 70);
-  --input: oklch(0.3 0.014 70);
-  --ring: oklch(0.82 0.15 75);
+  --border: oklch(0.3 0.09 275);
+  --input: oklch(0.3 0.09 275);
+  --ring: oklch(0.58 0.22 275);
 
-  --gradient-warm: radial-gradient(ellipse at top left, oklch(0.32 0.06 60 / 0.7), transparent 60%),
-                   radial-gradient(ellipse at bottom right, oklch(0.28 0.08 35 / 0.5), transparent 60%);
-  --gradient-amber: linear-gradient(135deg, oklch(0.82 0.15 75), oklch(0.7 0.16 45));
-  --shadow-elegant: 0 30px 80px -20px oklch(0 0 0 / 0.5);
-  --shadow-glow: 0 0 60px -10px oklch(0.82 0.15 75 / 0.35);
+  --gradient-indigo: linear-gradient(135deg, oklch(0.58 0.22 275), oklch(0.7 0.16 280));
+  --shadow-elegant: 0 30px 80px -20px oklch(0 0 0 / 0.6);
+  --shadow-glow: 0 0 80px -10px oklch(0.58 0.22 275 / 0.4);
 }
 
 @layer base {
@@ -82,14 +80,14 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.82 0.15 75 / 0.08), transparent),
-      radial-gradient(ellipse 60% 40% at 10% 30%, oklch(0.5 0.1 50 / 0.06), transparent);
+      radial-gradient(ellipse 60% 40% at 10% 0%, oklch(0.58 0.22 275 / 0.18), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 90% 30%, oklch(0.58 0.22 275 / 0.08), transparent 60%);
     background-attachment: fixed;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 }
 
@@ -97,18 +95,6 @@
   .text-balance { text-wrap: balance; }
   .text-display { font-family: var(--font-display); }
   .text-mono { font-family: var(--font-mono); }
-  .grain {
-    position: relative;
-  }
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.04;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
   .marquee {
     animation: marquee 40s linear infinite;
   }
