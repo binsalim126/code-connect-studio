@@ -42,6 +42,30 @@ const skillGroups: SkillGroup[] = [
   { cat: "AI & Automation", icon: Brain, tagline: "Models with a job to do.", items: ["OpenAI", "Gemini", "Claude", "RAG", "AI Agents", "OCR", "Computer Vision", "Voice Assistants"] },
 ];
 
+const projects = [
+  {
+    title: "Hyper Shop",
+    tag: "E-Commerce",
+    desc: "Full-stack multi-category e-commerce platform with cart, checkout, payments, and admin dashboard for inventory and order management.",
+    stack: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
+    img: projHyper,
+  },
+  {
+    title: "Vegetable Shop",
+    tag: "E-Commerce",
+    desc: "Hyper-local fresh vegetables storefront with daily price updates, delivery slot booking, and a vendor dashboard for stock control.",
+    stack: ["React", "Express", "MongoDB", "Tailwind"],
+    img: projVeg,
+  },
+  {
+    title: "Zahra Henna",
+    tag: "Online Store",
+    desc: "Premium henna & beauty brand store — curated catalog, product variants, secure payments, and a fully editable CMS for the owner.",
+    stack: ["Next.js", "Supabase", "Tailwind", "Razorpay"],
+    img: projZahra,
+  },
+];
+
 function Portfolio() {
   return (
     <main className="min-h-screen text-foreground overflow-x-hidden">
@@ -49,6 +73,7 @@ function Portfolio() {
       <Hero />
       <TechCloud />
       <About />
+      <Projects />
       <Services />
       <Skills />
       <Training />
