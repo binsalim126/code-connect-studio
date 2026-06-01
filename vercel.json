@@ -3,6 +3,12 @@
   "outputDirectory": "dist/server",
   "devCommand": "npm run dev",
   "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
