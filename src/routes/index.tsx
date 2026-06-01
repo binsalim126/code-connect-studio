@@ -592,47 +592,61 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-5 space-y-8">
-          <div>
-            <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 05 — Contact</div>
-            <h2 className="text-display text-5xl md:text-6xl font-bold mt-4 text-balance">
-              Let's build <span className="text-primary">something</span>.
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            For project enquiries, training requests, or just a friendly hello — reach out through any of the channels below.
+    <section id="contact" className="py-24 lg:py-32 border-t border-border relative overflow-hidden">
+      <div className="absolute -bottom-40 -left-40 w-[40rem] h-[40rem] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.18), transparent 60%)", filter: "blur(80px)" }} />
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
+        {/* Header */}
+        <div className="max-w-3xl mb-16">
+          <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 06 — Contact</div>
+          <h2 className="text-display text-4xl md:text-6xl lg:text-7xl font-bold mt-4 leading-[1.05] text-balance">
+            Let's build <span className="text-primary">something</span> remarkable.
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mt-6 max-w-xl">
+            For project enquiries, training requests, or just a friendly hello — drop a message or reach out directly.
           </p>
-          <div className="space-y-4">
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          {/* Contact channels */}
+          <div className="lg:col-span-5 space-y-3">
             <ContactRow icon={Mail} label="Email" value="yahiyamohammed126@gmail.com" href="mailto:yahiyamohammed126@gmail.com" />
             <ContactRow icon={Phone} label="Phone" value="+91 8075540923" href="tel:+918075540923" />
             <ContactRow icon={Github} label="GitHub" value="binsalim126" href="https://github.com/binsalim126" />
             <ContactRow icon={MapPin} label="Based in" value="Ernakulam, Kerala, India" />
-          </div>
-        </div>
 
-        <form onSubmit={submit} className="lg:col-span-7 bg-surface border border-border rounded-3xl p-8 lg:p-10 space-y-6" style={{ boxShadow: "var(--shadow-elegant)" }}>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Field name="name" label="Your name" placeholder="Jane Doe" required />
-            <Field name="email" label="Email" type="email" placeholder="jane@company.com" required />
+            <div className="mt-6 p-5 rounded-2xl border border-primary/30 bg-surface/60 backdrop-blur">
+              <div className="flex items-center gap-2 text-mono text-[10px] uppercase tracking-widest text-primary mb-2">
+                <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+                Currently available
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Booking new freelance & contract projects for Q3 2026. Typical reply within 24 hours.
+              </p>
+            </div>
           </div>
-          <Field name="company" label="Company (optional)" placeholder="Acme Inc." />
-          <div>
-            <label className="text-mono text-xs uppercase tracking-widest text-muted-foreground">Project details</label>
-            <textarea
-              name="message"
-              required
-              rows={5}
-              placeholder="Tell me about the project, timeline, and budget…"
-              className="mt-2 w-full bg-background border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition resize-none"
-            />
-          </div>
-          <button type="submit" className="group w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-4 rounded-full font-medium hover:opacity-90 transition">
-            {status === "sent" ? "Opening your mail client…" : <>Send enquiry <Send className="size-4 group-hover:translate-x-0.5 transition-transform" /></>}
-          </button>
-          <p className="text-xs text-muted-foreground text-center">Typical reply within 24 hours.</p>
-        </form>
+
+          {/* Form */}
+          <form onSubmit={submit} className="lg:col-span-7 bg-surface border border-border rounded-3xl p-6 sm:p-8 lg:p-10 space-y-6" style={{ boxShadow: "var(--shadow-elegant)" }}>
+            <div className="grid md:grid-cols-2 gap-6">
+              <Field name="name" label="Your name" placeholder="Jane Doe" required />
+              <Field name="email" label="Email" type="email" placeholder="jane@company.com" required />
+            </div>
+            <Field name="company" label="Company (optional)" placeholder="Acme Inc." />
+            <div>
+              <label className="text-mono text-xs uppercase tracking-widest text-muted-foreground">Project details</label>
+              <textarea
+                name="message"
+                required
+                rows={5}
+                placeholder="Tell me about the project, timeline, and budget…"
+                className="mt-2 w-full bg-background border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition resize-none"
+              />
+            </div>
+            <button type="submit" className="group w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-4 rounded-full font-semibold hover:opacity-90 transition" style={{ boxShadow: "var(--shadow-glow)" }}>
+              {status === "sent" ? "Opening your mail client…" : <>Send enquiry <Send className="size-4 group-hover:translate-x-0.5 transition-transform" /></>}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
