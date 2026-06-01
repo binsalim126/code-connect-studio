@@ -359,6 +359,59 @@ function Detail({ k, v }: { k: string; v: string }) {
   );
 }
 
+function Projects() {
+  return (
+    <section id="projects" className="py-24 lg:py-32 border-t border-border relative overflow-hidden">
+      <div className="absolute -top-32 right-0 w-[40rem] h-[40rem] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.15), transparent 60%)", filter: "blur(80px)" }} />
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+          <div>
+            <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 02 — Selected Work</div>
+            <h2 className="text-display text-4xl md:text-5xl lg:text-6xl mt-4 text-balance">
+              Projects, <span className="text-primary">shipped</span>.
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-md text-sm">A glimpse at recent builds — full-stack e-commerce and online stores designed to convert and scale.</p>
+        </div>
+
+        <div className="space-y-8 lg:space-y-12">
+          {projects.map((p, i) => (
+            <article
+              key={p.title}
+              className={`grid lg:grid-cols-12 gap-6 lg:gap-10 items-center group ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
+            >
+              <div className="lg:col-span-7 relative">
+                <div className="relative rounded-2xl overflow-hidden border border-border bg-surface aspect-[16/10] group-hover:border-primary/50 transition" style={{ boxShadow: "var(--shadow-elegant)" }}>
+                  <img src={p.img} alt={p.title} loading="lazy" width={1024} height={640} className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-background/40 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4 text-mono text-[10px] uppercase tracking-[0.2em] bg-background/80 backdrop-blur border border-primary/30 text-primary px-3 py-1.5 rounded-full">
+                    0{i + 1} / {p.tag}
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-5 space-y-5">
+                <h3 className="text-display text-3xl md:text-4xl leading-tight">{p.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{p.desc}</p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {p.stack.map((s) => (
+                    <span key={s} className="text-mono text-[11px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-border bg-background/60 text-muted-foreground">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <a href="#contact" className="inline-flex items-center gap-2 text-sm font-medium text-primary group/link pt-2">
+                  Discuss a similar build
+                  <ArrowUpRight className="size-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Services() {
   return (
     <section id="work" className="py-24 lg:py-32 border-t border-border">
