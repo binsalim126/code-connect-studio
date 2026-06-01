@@ -82,7 +82,7 @@ function Nav() {
   return (
     <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-2" : "py-4"}`}>
       <div className={`max-w-6xl mx-auto px-4 lg:px-6 transition-all duration-500`}>
-        <div className={`flex items-center justify-between gap-3 rounded-full border border-border/60 bg-background/70 backdrop-blur-xl pl-5 pr-2 py-2 ${scrolled ? "shadow-2xl shadow-primary/10" : ""}`}>
+        <div className={`flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-background/70 backdrop-blur-xl pl-5 pr-2 py-2 ${scrolled ? "shadow-2xl shadow-primary/10" : ""}`}>
           <a href="#top" className="flex items-center gap-2 text-mono text-sm tracking-tight shrink-0">
             <span className="relative inline-flex size-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 animate-ping" />
@@ -101,10 +101,18 @@ function Nav() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a href="#contact" className="hidden sm:inline-flex items-center gap-1.5 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium hover:opacity-90 transition group">
-              Hire me <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <a
+              href="#contact"
+              className="relative hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary-foreground px-5 py-2 rounded-lg group overflow-hidden"
+              style={{ background: "var(--gradient-indigo)", boxShadow: "var(--shadow-glow)" }}
+            >
+              <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition" />
+              <span className="relative flex items-center gap-1.5">
+                <Sparkles className="size-3.5" /> Hire me
+                <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </span>
             </a>
-            <button onClick={() => setOpen((v) => !v)} className="md:hidden size-9 inline-flex items-center justify-center rounded-full border border-border bg-surface/60" aria-label="menu">
+            <button onClick={() => setOpen((v) => !v)} className="md:hidden size-9 inline-flex items-center justify-center rounded-lg border border-border bg-surface/60" aria-label="menu">
               {open ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
           </div>
@@ -116,13 +124,13 @@ function Nav() {
         </div>
 
         {open && (
-          <div className="md:hidden mt-2 rounded-2xl border border-border/60 bg-background/90 backdrop-blur-xl p-2">
+          <div className="md:hidden mt-2 rounded-xl border border-border/60 bg-background/90 backdrop-blur-xl p-2">
             {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block px-4 py-3 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-surface/60 transition">
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block px-4 py-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-surface/60 transition">
                 {l.label}
               </a>
             ))}
-            <a href="#contact" onClick={() => setOpen(false)} className="mt-1 block px-4 py-3 rounded-xl text-sm bg-primary text-primary-foreground font-medium text-center">Hire me</a>
+            <a href="#contact" onClick={() => setOpen(false)} className="mt-1 block px-4 py-3 rounded-lg text-sm text-primary-foreground font-semibold text-center" style={{ background: "var(--gradient-indigo)" }}>Hire me</a>
           </div>
         )}
       </div>
@@ -135,28 +143,8 @@ function Hero() {
     <section id="top" className="relative pt-32 pb-20 lg:pt-44 lg:pb-32">
       <div className="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.18), transparent 60%)", filter: "blur(60px)" }} />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center relative">
-        {/* Portrait first */}
-        <div className="lg:col-span-5 order-1 relative flex justify-start">
-          <div className="relative group">
-            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
-            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
-              <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
-                <div>
-                  <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
-                  <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
-                </div>
-                <div className="text-mono text-[10px] text-muted-foreground text-right uppercase tracking-widest">
-                  Est.<br />2022
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Text right */}
-        <div className="lg:col-span-7 order-2 space-y-8">
+        {/* Text left */}
+        <div className="lg:col-span-7 order-2 lg:order-1 space-y-8">
           <div className="inline-flex items-center gap-3 text-xs text-mono uppercase tracking-[0.2em] text-primary font-semibold">
             <span className="h-px w-8 bg-primary" />
             Available for projects · 2026
@@ -183,6 +171,26 @@ function Hero() {
             <Stat n="45+" l="Students trained" />
             <div className="h-10 w-px bg-border" />
             <Stat n="4" l="Languages spoken" />
+          </div>
+        </div>
+
+        {/* Portrait right */}
+        <div className="lg:col-span-5 order-1 lg:order-2 relative flex lg:justify-end">
+          <div className="relative group">
+            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
+            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
+              <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+                <div>
+                  <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
+                  <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
+                </div>
+                <div className="text-mono text-[10px] text-muted-foreground text-right uppercase tracking-widest">
+                  Est.<br />2022
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -257,22 +265,47 @@ function TechCloud() {
 
 function About() {
   return (
-    <section id="about" className="py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-4">
-          <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 01 — About</div>
-          <h2 className="text-display text-4xl md:text-5xl mt-4">A developer who delivers.</h2>
+    <section id="about" className="py-24 lg:py-32 border-t border-border">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-start">
+        {/* Photo left */}
+        <div className="lg:col-span-5 relative">
+          <div className="relative group max-w-[420px]">
+            <div className="absolute -inset-3 border border-primary/30 rounded-2xl group-hover:-inset-1 transition-all duration-500" />
+            <div className="absolute -bottom-4 -right-4 text-mono text-[10px] uppercase tracking-[0.25em] text-primary/80 bg-background border border-primary/40 px-3 py-1.5 rounded-full z-10">
+              / 01 — About
+            </div>
+            <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
+              <img src={portrait} alt="Mohammed Yahiya DS at work" className="absolute inset-0 w-full h-full object-cover object-top" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+              <div className="absolute top-4 left-4 flex items-center gap-2 text-mono text-[10px] uppercase tracking-widest text-primary bg-background/70 backdrop-blur px-3 py-1.5 rounded-full border border-primary/30">
+                <span className="size-1.5 rounded-full bg-primary animate-pulse" /> In studio · Kerala
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="lg:col-span-7 lg:col-start-6 space-y-6 text-lg leading-relaxed text-muted-foreground">
-          <p>
-            I build scalable websites, web applications, e-commerce platforms, and intelligent chatbot systems for clients who care about quality. Known for <span className="text-foreground">timely delivery, professional communication,</span> and creating modern interactive experiences — including 3D and animated interfaces.
-          </p>
-          <p>
-            Beyond client work, I've trained <span className="text-foreground">45+ students</span> as a technical trainer through online and offline sessions, helping the next wave of developers ship real software with modern tools.
-          </p>
-          <div className="grid grid-cols-2 gap-4 pt-4 text-sm">
-            <Detail k="Location" v="Ernakulam, Kerala" />
-            <Detail k="Experience" v="3+ years" />
+
+        {/* Copy right */}
+        <div className="lg:col-span-7 space-y-7">
+          <div>
+            <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 01 — About</div>
+            <h2 className="text-display text-4xl md:text-5xl lg:text-6xl mt-4 leading-[1.05] tracking-tight text-balance">
+              An engineer obsessed with <span className="text-primary">craft</span>, shipping, and the edges where software meets intelligence.
+            </h2>
+          </div>
+          <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
+            <p>
+              For three years I've architected and shipped production systems — high-performance web platforms, e-commerce backbones, and AI-native products that quietly do the work of entire teams. I treat every codebase like a long-term commitment: clean architecture, observable systems, pixel-honest interfaces, and zero patience for friction.
+            </p>
+            <p>
+              My deepest fluency lives at the intersection of <span className="text-foreground">full-stack engineering and applied AI</span> — retrieval-augmented generation, autonomous agents, voice assistants, and OCR pipelines built on OpenAI, Gemini, and Claude. I bridge product intent and technical execution, partnering closely with founders to translate ambiguity into shipped software.
+            </p>
+            <p>
+              Beyond client work, I've mentored <span className="text-foreground">45+ developers</span> as a technical trainer — turning curiosity into employable skill across modern web, AI tooling, and the discipline of shipping real things.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-4 pt-4 text-sm">
+            <Detail k="Based in" v="Ernakulam, Kerala" />
+            <Detail k="Experience" v="3+ years, production" />
             <Detail k="Languages" v="Malayalam · English · Arabic · Urdu" />
             <Detail k="Availability" v="Freelance & contract" />
           </div>
