@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import portrait from "@/assets/yahiya-portrait.jpg";
+import projHyper from "@/assets/project-hypershop.jpg";
+import projVeg from "@/assets/project-vegshop.jpg";
+import projZahra from "@/assets/project-zahrahenna.jpg";
 import { ArrowUpRight, Mail, Phone, MapPin, Github, Send, Sparkles, Code2, Database, Cloud, Bot, GraduationCap, Menu, X, Atom, Boxes, Cpu, Server, Cog, Layers, Braces, Terminal, Globe, Zap, Brain, Container } from "lucide-react";
 
 export const Route = createFileRoute("/")({
