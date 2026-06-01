@@ -143,28 +143,8 @@ function Hero() {
     <section id="top" className="relative pt-32 pb-20 lg:pt-44 lg:pb-32">
       <div className="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.18), transparent 60%)", filter: "blur(60px)" }} />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center relative">
-        {/* Portrait first */}
-        <div className="lg:col-span-5 order-1 relative flex justify-start">
-          <div className="relative group">
-            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
-            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
-              <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
-                <div>
-                  <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
-                  <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
-                </div>
-                <div className="text-mono text-[10px] text-muted-foreground text-right uppercase tracking-widest">
-                  Est.<br />2022
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Text right */}
-        <div className="lg:col-span-7 order-2 space-y-8">
+        {/* Text left */}
+        <div className="lg:col-span-7 order-2 lg:order-1 space-y-8">
           <div className="inline-flex items-center gap-3 text-xs text-mono uppercase tracking-[0.2em] text-primary font-semibold">
             <span className="h-px w-8 bg-primary" />
             Available for projects · 2026
@@ -191,6 +171,26 @@ function Hero() {
             <Stat n="45+" l="Students trained" />
             <div className="h-10 w-px bg-border" />
             <Stat n="4" l="Languages spoken" />
+          </div>
+        </div>
+
+        {/* Portrait right */}
+        <div className="lg:col-span-5 order-1 lg:order-2 relative flex lg:justify-end">
+          <div className="relative group">
+            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
+            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
+              <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+                <div>
+                  <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
+                  <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
+                </div>
+                <div className="text-mono text-[10px] text-muted-foreground text-right uppercase tracking-widest">
+                  Est.<br />2022
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
