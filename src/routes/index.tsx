@@ -102,6 +102,7 @@ function Nav() {
 
   const links = [
     { href: "#about", label: "About" },
+    { href: "#projects", label: "Work" },
     { href: "#work", label: "Services" },
     { href: "#skills", label: "Stack" },
     { href: "#contact", label: "Contact" },
