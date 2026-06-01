@@ -300,16 +300,19 @@ function About() {
     <section id="about" className="py-24 lg:py-32 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-start">
         {/* Photo left */}
-        <div className="lg:col-span-5 relative">
-          <div className="relative group max-w-[420px]">
-            <div className="absolute -inset-3 border border-primary/30 rounded-2xl group-hover:-inset-1 transition-all duration-500" />
-            <div className="absolute -bottom-4 -right-4 text-mono text-[10px] uppercase tracking-[0.25em] text-primary/80 bg-background border border-primary/40 px-3 py-1.5 rounded-full z-10">
+        <div className="lg:col-span-5 relative flex justify-center lg:block">
+          <div className="relative group w-fit lg:max-w-[420px]">
+            <div className="absolute -inset-3 border border-primary/30 rounded-full lg:rounded-2xl group-hover:-inset-1 transition-all duration-500" />
+            <div className="absolute -bottom-4 -right-4 text-mono text-[10px] uppercase tracking-[0.25em] text-primary/80 bg-background border border-primary/40 px-3 py-1.5 rounded-full z-10 hidden lg:block">
               / 01 — About
             </div>
-            <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
+            <div
+              className="relative w-64 sm:w-80 lg:w-auto aspect-square lg:aspect-[4/5] rounded-full lg:rounded-xl overflow-hidden bg-surface"
+              style={{ boxShadow: "var(--shadow-elegant)" }}
+            >
               <img src={portrait} alt="Mohammed Yahiya DS at work" className="absolute inset-0 w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              <div className="absolute top-4 left-4 flex items-center gap-2 text-mono text-[10px] uppercase tracking-widest text-primary bg-background/70 backdrop-blur px-3 py-1.5 rounded-full border border-primary/30">
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent hidden lg:block" />
+              <div className="absolute top-4 left-4 hidden lg:flex items-center gap-2 text-mono text-[10px] uppercase tracking-widest text-primary bg-background/70 backdrop-blur px-3 py-1.5 rounded-full border border-primary/30">
                 <span className="size-1.5 rounded-full bg-primary animate-pulse" /> In studio · Kerala
               </div>
             </div>
