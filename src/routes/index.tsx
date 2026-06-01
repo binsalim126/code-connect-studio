@@ -82,7 +82,7 @@ function Nav() {
   return (
     <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-2" : "py-4"}`}>
       <div className={`max-w-6xl mx-auto px-4 lg:px-6 transition-all duration-500`}>
-        <div className={`flex items-center justify-between gap-3 rounded-full border border-border/60 bg-background/70 backdrop-blur-xl pl-5 pr-2 py-2 ${scrolled ? "shadow-2xl shadow-primary/10" : ""}`}>
+        <div className={`flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-background/70 backdrop-blur-xl pl-5 pr-2 py-2 ${scrolled ? "shadow-2xl shadow-primary/10" : ""}`}>
           <a href="#top" className="flex items-center gap-2 text-mono text-sm tracking-tight shrink-0">
             <span className="relative inline-flex size-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 animate-ping" />
@@ -101,10 +101,18 @@ function Nav() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a href="#contact" className="hidden sm:inline-flex items-center gap-1.5 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium hover:opacity-90 transition group">
-              Hire me <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <a
+              href="#contact"
+              className="relative hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary-foreground px-5 py-2 rounded-lg group overflow-hidden"
+              style={{ background: "var(--gradient-indigo)", boxShadow: "var(--shadow-glow)" }}
+            >
+              <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition" />
+              <span className="relative flex items-center gap-1.5">
+                <Sparkles className="size-3.5" /> Hire me
+                <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </span>
             </a>
-            <button onClick={() => setOpen((v) => !v)} className="md:hidden size-9 inline-flex items-center justify-center rounded-full border border-border bg-surface/60" aria-label="menu">
+            <button onClick={() => setOpen((v) => !v)} className="md:hidden size-9 inline-flex items-center justify-center rounded-lg border border-border bg-surface/60" aria-label="menu">
               {open ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
           </div>
@@ -116,13 +124,13 @@ function Nav() {
         </div>
 
         {open && (
-          <div className="md:hidden mt-2 rounded-2xl border border-border/60 bg-background/90 backdrop-blur-xl p-2">
+          <div className="md:hidden mt-2 rounded-xl border border-border/60 bg-background/90 backdrop-blur-xl p-2">
             {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block px-4 py-3 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-surface/60 transition">
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block px-4 py-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-surface/60 transition">
                 {l.label}
               </a>
             ))}
-            <a href="#contact" onClick={() => setOpen(false)} className="mt-1 block px-4 py-3 rounded-xl text-sm bg-primary text-primary-foreground font-medium text-center">Hire me</a>
+            <a href="#contact" onClick={() => setOpen(false)} className="mt-1 block px-4 py-3 rounded-lg text-sm text-primary-foreground font-semibold text-center" style={{ background: "var(--gradient-indigo)" }}>Hire me</a>
           </div>
         )}
       </div>
