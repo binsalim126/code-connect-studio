@@ -1,4 +1,12 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": ".output"
+  "outputDirectory": ".output/server",
+  "serverless": {
+    "memory": 3008
+  },
+  "functions": {
+    ".output/server/**/*.js": {
+      "runtime": "nodejs20.x"
+    }
+  }
 }
