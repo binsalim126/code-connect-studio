@@ -204,13 +204,16 @@ function Hero() {
         </div>
 
         {/* Portrait right */}
-        <div className="lg:col-span-5 order-1 lg:order-2 relative flex lg:justify-end">
+        <div className="lg:col-span-5 order-1 lg:order-2 relative flex justify-center lg:justify-end">
           <div className="relative group">
-            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
-            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-xl overflow-hidden bg-surface" style={{ boxShadow: "var(--shadow-elegant)" }}>
+            <div className="absolute -inset-3 lg:-inset-4 border border-primary/30 rounded-full lg:rounded-2xl group-hover:-inset-2 transition-all duration-500" />
+            <div
+              className="relative w-64 sm:w-80 lg:w-full lg:max-w-[420px] aspect-square lg:aspect-[4/5] rounded-full lg:rounded-xl overflow-hidden bg-surface"
+              style={{ boxShadow: "var(--shadow-elegant)" }}
+            >
               <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent hidden lg:block" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 hidden lg:flex items-end justify-between">
                 <div>
                   <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
                   <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
