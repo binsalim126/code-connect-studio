@@ -276,35 +276,40 @@ function TechCloud() {
 function About() {
   return (
     <section id="about" className="py-24 lg:py-32 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-start">
-        {/* Photo left */}
-        <div className="lg:col-span-5 relative flex justify-center lg:block">
-          <div className="relative group w-fit lg:max-w-[420px]">
-            <div className="absolute -inset-3 border border-primary/30 rounded-full lg:rounded-2xl group-hover:-inset-1 transition-all duration-500" />
-            <div className="absolute -bottom-4 -right-4 text-mono text-[10px] uppercase tracking-[0.25em] text-primary/80 bg-background border border-primary/40 px-3 py-1.5 rounded-full z-10 hidden lg:block">
-              / 01 — About
-            </div>
-            <div
-              className="relative w-64 sm:w-80 lg:w-auto aspect-square lg:aspect-[4/5] rounded-full lg:rounded-xl overflow-hidden bg-surface"
-              style={{ boxShadow: "var(--shadow-elegant)" }}
-            >
-              <img src={portrait} alt="Mohammed Yahiya DS at work" className="absolute inset-0 w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent hidden lg:block" />
-              <div className="absolute top-4 left-4 hidden lg:flex items-center gap-2 text-mono text-[10px] uppercase tracking-widest text-primary bg-background/70 backdrop-blur px-3 py-1.5 rounded-full border border-primary/30">
-                <span className="size-1.5 rounded-full bg-primary animate-pulse" /> In studio · Kerala
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 space-y-12">
+        {/* Top: Image + Headline side by side */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Photo */}
+          <div className="lg:col-span-5 relative flex justify-center">
+            <div className="relative group w-64 sm:w-80 lg:w-full lg:max-w-[420px]">
+              <div className="absolute -inset-3 border border-primary/30 rounded-full lg:rounded-2xl group-hover:-inset-1 transition-all duration-500" />
+              <div className="absolute -bottom-4 -right-4 text-mono text-[10px] uppercase tracking-[0.25em] text-primary/80 bg-background border border-primary/40 px-3 py-1.5 rounded-full z-10 hidden lg:block">
+                / 01 — About
+              </div>
+              <div
+                className="relative w-full aspect-square lg:aspect-[4/5] rounded-full lg:rounded-xl overflow-hidden bg-surface"
+                style={{ boxShadow: "var(--shadow-elegant)" }}
+              >
+                <img src={portrait} alt="Mohammed Yahiya DS at work" className="absolute inset-0 w-full h-full object-cover object-top" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent hidden lg:block" />
+                <div className="absolute top-4 left-4 hidden lg:flex items-center gap-2 text-mono text-[10px] uppercase tracking-widest text-primary bg-background/70 backdrop-blur px-3 py-1.5 rounded-full border border-primary/30">
+                  <span className="size-1.5 rounded-full bg-primary animate-pulse" /> In studio · Kerala
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Copy right */}
-        <div className="lg:col-span-7 space-y-7">
-          <div>
+          {/* Headline */}
+          <div className="lg:col-span-7">
             <div className="text-mono text-xs uppercase tracking-widest text-primary">/ 01 — About</div>
             <h2 className="text-display text-4xl md:text-5xl lg:text-6xl mt-4 leading-[1.05] tracking-tight text-balance">
               An engineer obsessed with <span className="text-primary">craft</span>, shipping, and the edges where software meets intelligence.
             </h2>
           </div>
+        </div>
+
+        {/* Below: Full width text */}
+        <div className="space-y-7">
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
             <p>
               For three years I've architected and shipped production systems — high-performance web platforms, e-commerce backbones, and AI-native products that quietly do the work of entire teams. I treat every codebase like a long-term commitment: clean architecture, observable systems, pixel-honest interfaces, and zero patience for friction.
@@ -316,7 +321,7 @@ function About() {
               Beyond client work, I've mentored <span className="text-foreground">45+ developers</span> as a technical trainer — turning curiosity into employable skill across modern web, AI tooling, and the discipline of shipping real things.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4 pt-4 text-sm">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4 pt-4 text-sm">
             <Detail k="Based in" v="Ernakulam, Kerala" />
             <Detail k="Experience" v="3+ years, production" />
             <Detail k="Languages" v="Malayalam · English · Arabic · Urdu" />
