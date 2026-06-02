@@ -40,17 +40,17 @@
   --radius: 0.75rem;
 
   /* Midnight Indigo — deep navy + electric indigo */
-  --background: oklch(0.14 0.03 275);          /* #0a0a1a */
+  --background: oklch(0.14 0.03 275); /* #0a0a1a */
   --foreground: oklch(0.97 0.005 270);
-  --surface: oklch(0.22 0.06 275);             /* #141432 */
+  --surface: oklch(0.22 0.06 275); /* #141432 */
   --surface-foreground: oklch(0.97 0.005 270);
   --card: oklch(0.22 0.06 275);
   --card-foreground: oklch(0.97 0.005 270);
   --popover: oklch(0.22 0.06 275);
   --popover-foreground: oklch(0.97 0.005 270);
-  --primary: oklch(0.58 0.22 275);             /* #4f46e5 */
+  --primary: oklch(0.58 0.22 275); /* #4f46e5 */
   --primary-foreground: oklch(0.98 0.005 270);
-  --secondary: oklch(0.3 0.09 275);            /* #1e1e5a */
+  --secondary: oklch(0.3 0.09 275); /* #1e1e5a */
   --secondary-foreground: oklch(0.97 0.005 270);
   --muted: oklch(0.26 0.05 275);
   --muted-foreground: oklch(0.72 0.04 275);
@@ -84,7 +84,10 @@
       radial-gradient(ellipse 50% 35% at 90% 30%, oklch(0.58 0.22 275 / 0.08), transparent 60%);
     background-attachment: fixed;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.025em;
@@ -92,14 +95,24 @@
 }
 
 @layer utilities {
-  .text-balance { text-wrap: balance; }
-  .text-display { font-family: var(--font-display); }
-  .text-mono { font-family: var(--font-mono); }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-display {
+    font-family: var(--font-display);
+  }
+  .text-mono {
+    font-family: var(--font-mono);
+  }
   .marquee {
     animation: marquee 40s linear infinite;
   }
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
