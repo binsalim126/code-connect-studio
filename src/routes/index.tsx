@@ -172,8 +172,8 @@ function Hero() {
     <section id="top" className="relative pt-32 pb-20 lg:pt-44 lg:pb-32">
       <div className="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, oklch(0.58 0.22 275 / 0.18), transparent 60%)", filter: "blur(60px)" }} />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center relative">
-        {/* Text left */}
-        <div className="lg:col-span-7 order-2 lg:order-1 space-y-8">
+        {/* Text */}
+        <div className="lg:col-span-12 space-y-8">
           <div className="inline-flex items-center gap-3 text-xs text-mono uppercase tracking-[0.2em] text-primary font-semibold">
             <span className="h-px w-8 bg-primary" />
             Available for projects · 2026
