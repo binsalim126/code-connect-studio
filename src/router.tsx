@@ -15,11 +15,3 @@ export const getRouter = () => {
 
   return router;
 };
-
-declare module "@tanstack/react-start" {
-  interface Register {
-    ssr: true;
-    router: ReturnType<typeof getRouter>;
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>;
-  }
-}
