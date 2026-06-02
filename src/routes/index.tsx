@@ -203,28 +203,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Portrait right — desktop only */}
-        <div className="hidden lg:block lg:col-span-5 order-1 lg:order-2 relative">
-          <div className="relative group flex justify-end">
-            <div className="absolute -inset-4 border border-primary/30 rounded-2xl group-hover:-inset-2 transition-all duration-500" />
-            <div
-              className="relative w-full max-w-[420px] aspect-[4/5] rounded-xl overflow-hidden bg-surface"
-              style={{ boxShadow: "var(--shadow-elegant)" }}
-            >
-              <img src={portrait} alt="Mohammed Yahiya DS" className="absolute inset-0 w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
-                <div>
-                  <div className="text-mono text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Portrait</div>
-                  <div className="text-display text-xl font-semibold mt-1">Mohammed Yahiya</div>
-                </div>
-                <div className="text-mono text-[10px] text-muted-foreground text-right uppercase tracking-widest">
-                  Est.<br />2022
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
